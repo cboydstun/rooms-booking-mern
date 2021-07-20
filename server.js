@@ -40,8 +40,7 @@ app.use('/api/bookings' , bookingsRoute)
 if(process.env.NODE_ENV === "production"){
     app.use(express.static("client/build"))
     app.get("*", (req, res)=>{
-        const __dirname = path.dirname(new URL(import.meta.URL).pathname)
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+        res.sendFile (path.resolve(__dirname,'client','build','index.html' ))
     })
 }else{
     app.get('/', (req, res)=>{
