@@ -1,19 +1,8 @@
-const express = require("express");
+import express from "express"
+import Room from "../models/booking.js"
 const router = express.Router();
-const Room = require("../models/room")
-const mongoose = require("mongoose");
-router.get("/getallrooms", async (req, res) => {
-   
-     try {
-          const rooms = await Room.find()
-     res.send(rooms)
-     } catch (error) {
-          return res.status(400).json({ message: 'something went wrong' });
-     }
 
-});
-
-
+//@POST - /api/rooms/getroombyid - get room by ID - public
 router.post("/getroombyid", async(req, res) => {
      console.log(req.body);
      try {
@@ -24,6 +13,7 @@ router.post("/getroombyid", async(req, res) => {
      }
 });
 
+//@GET - /api/rooms/getallrooms - get all rooms - public
 router.get("/getallrooms", async(req, res) => {
      console.log(req.body);
      try {
@@ -34,6 +24,7 @@ router.get("/getallrooms", async(req, res) => {
      }
 });
 
+//@POST - /api/rooms/addroom - add a new room - public
 router.post("/addroom", async(req, res) => {
   const { room , 
      rentperday, maxcount ,description ,phonenumber ,type ,image1 ,image2 ,image3} = req.body
@@ -52,4 +43,4 @@ router.post("/addroom", async(req, res) => {
 });
 
 
-module.exports = router
+export default router

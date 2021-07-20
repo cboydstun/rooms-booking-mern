@@ -1,7 +1,9 @@
-const express = require("express");
-const router = express.Router();
-const User = require("../models/user")
+import express from "express"
+import User from "../models/user.js"
 
+const router = express.Router();
+
+//@POST - /api/users/register - register new user - Public
 router.post("/register", async(req, res) => {
   
     const {name , email , password} = req.body
@@ -14,10 +16,9 @@ router.post("/register", async(req, res) => {
     } catch (error) {
          return res.status(400).json({ message: error });
     }
-
 });
 
-
+//@POST - /api/users/login - login user - Public
 router.post("/login", async(req, res) => {
 
     const {email , password} = req.body
@@ -46,7 +47,7 @@ router.post("/login", async(req, res) => {
   
 });
 
-
+//@GET - /api/users/getallusers - get all users - Public
 router.get("/getallusers", async(req, res) => {
 
     try {
@@ -58,6 +59,7 @@ router.get("/getallusers", async(req, res) => {
   
 });
 
+//@POST - /api/users/deleteuser - delete user by ID - Public
 router.post("/deleteuser", async(req, res) => {
   
     const userid = req.body.userid
@@ -71,6 +73,4 @@ router.post("/deleteuser", async(req, res) => {
 
 });
 
-
-
-module.exports = router
+export default router

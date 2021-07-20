@@ -27,10 +27,14 @@ mongoose.connect(process.env.MONGO_URL, {
 }).then(console.log("Connected to MongoDB")).catch((err)=>{console.log(err)})
 
 //import routes
-
+import roomsRoutes from './routes/roomsRoute.js'
+import userRoute from './routes/userRoute.js'
+import bookingsRoute from './routes/bookingsRoute.js'
 
 //initalize routes
-
+app.use('/api/rooms',roomsRoutes)
+app.use('/api/users' , userRoute)
+app.use('/api/bookings' , bookingsRoute)
 
 //Heroku Deployment
 if(process.env.NODE_ENV === "production"){

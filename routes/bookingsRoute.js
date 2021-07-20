@@ -1,13 +1,15 @@
-const express = require("express");
+import express from "express"
 const router = express.Router();
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
-const moment = require("moment");
-const stripe = require("stripe")(
-  "sk_test_51IYnC0SIR2AbPxU0EiMx1fTwzbZXLbkaOcbc2cXx49528d9TGkQVjUINJfUDAnQMVaBFfBDP5xtcHCkZG1n1V3E800U7qXFmGf"
-);
-const Booking = require("../models/booking");
-const Room = require("../models/room");
+import { v4 as uuidv4 } from 'uuid';
+import moment from "moment"
+// import stripe from "stripe(
+//   "sk_test_51IYnC0SIR2AbPxU0EiMx1fTwzbZXLbkaOcbc2cXx49528d9TGkQVjUINJfUDAnQMVaBFfBDP5xtcHCkZG1n1V3E800U7qXFmGf"
+// )
+import Booking from "../models/booking.js"
+import Room from "../models/room.js"
+
+
+//@POST - /api/bookings/bookroom - book a room - Public
 router.post("/bookroom", async (req, res) => {
   const { room, fromdate, todate, totalDays, totalAmount, user , token } = req.body;
 
@@ -71,12 +73,11 @@ router.post("/bookroom", async (req, res) => {
   
 });
 
+//@POST - /api/bookings/cancelbooking - cancel a booking - Public
 router.post("/cancelbooking", async (req, res) => {
   const {bookingid,roomid } = req.body;
-  
 
   try {
-
     const bookingitem = await Booking.findOne({_id: bookingid}) 
     bookingitem.status='cancelled'
     await bookingitem.save();
@@ -94,6 +95,7 @@ router.post("/cancelbooking", async (req, res) => {
   }
 });
 
+//@POST - /api/bookings/getuserbookings - get all bookings by this user - Public
 router.post("/getuserbookings", async (req, res) => {
   const { userid } = req.body;
   try {
@@ -104,6 +106,7 @@ router.post("/getuserbookings", async (req, res) => {
   }
 });
 
+//@GET - /api/bookings/getallbookings - get all bookings total - Public
 router.get("/getallbookings", async (req, res) => {
   try {
     const bookings = await Booking.find({});
@@ -113,4 +116,4 @@ router.get("/getallbookings", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router
