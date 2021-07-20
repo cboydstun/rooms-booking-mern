@@ -2,9 +2,8 @@ import express from "express"
 const router = express.Router();
 import { v4 as uuidv4 } from 'uuid';
 import moment from "moment"
-// import stripe from "stripe(
-//   "sk_test_51IYnC0SIR2AbPxU0EiMx1fTwzbZXLbkaOcbc2cXx49528d9TGkQVjUINJfUDAnQMVaBFfBDP5xtcHCkZG1n1V3E800U7qXFmGf"
-// )
+import Stripe from 'stripe';
+const stripe = new Stripe('sk_test_51IYnC0SIR2AbPxU0EiMx1fTwzbZXLbkaOcbc2cXx49528d9TGkQVjUINJfUDAnQMVaBFfBDP5xtcHCkZG1n1V3E800U7qXFmGf');
 import Booking from "../models/booking.js"
 import Room from "../models/room.js"
 
