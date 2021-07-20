@@ -1,0 +1,27 @@
+{
+  "name": "rooms-booking-mern",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "client": "yarn start --prefix client",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": "https://github.com/cboydstun/rooms-booking-mern.git",
+  "author": "Chris Boydstun <52934303+cboydstun@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0"
+  }
+}
