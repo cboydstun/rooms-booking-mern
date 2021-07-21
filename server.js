@@ -36,16 +36,15 @@ app.use('/api/rooms',roomsRoutes)
 app.use('/api/users' , userRoute)
 app.use('/api/bookings' , bookingsRoute)
 
+
 //Heroku Deployment
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("client/build"))
-    app.get("*", (req, res)=>{
-        res.sendFile (path.resolve(__dirname,'client','build','index.html' ))
-    })
-}else{
+if(process.env.NODE_ENV === "production"){ 
+    app.use('/' , express.static('client/build')) 
+    app.get('*' , (req , res)=>{ res.sendFile(path.resolve(__dirname, 'client/build/index.html')) 
+})}else{
     app.get('/', (req, res)=>{
         //basic greeting from operational API
-        res.send("Hello Hydrogen PST crew! The API is running...")
+        res.send("The API is running...")
     })
 }
     

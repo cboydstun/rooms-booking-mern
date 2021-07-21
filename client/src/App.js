@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import {BrowserRouter, Route , path} from 'react-router-dom'
+import {BrowserRouter, Route } from 'react-router-dom'
 import Homescreen from "./screens/Homescreen";
 import Navbar from "./components/Navbar";
 import Loginscreen from "./screens/Loginscreen";
